@@ -68,6 +68,7 @@ struct LoginView: View {
             }
         }
     }
+    
     private func handleAction() {
         if isLoginMode {
             print("Should log into Firebase with existing credentials")
