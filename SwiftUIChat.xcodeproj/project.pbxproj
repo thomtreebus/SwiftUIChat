@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CD0913D7298065D000F7719B /* SwiftUIChatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0913D6298065D000F7719B /* SwiftUIChatApp.swift */; };
-		CD0913D9298065D000F7719B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0913D8298065D000F7719B /* ContentView.swift */; };
+		CD0913D9298065D000F7719B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0913D8298065D000F7719B /* LoginView.swift */; };
 		CD0913DB298065D100F7719B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD0913DA298065D100F7719B /* Assets.xcassets */; };
 		CD0913DE298065D100F7719B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD0913DD298065D100F7719B /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -16,7 +16,7 @@
 /* Begin PBXFileReference section */
 		CD0913D3298065CF00F7719B /* SwiftUIChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUIChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD0913D6298065D000F7719B /* SwiftUIChatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIChatApp.swift; sourceTree = "<group>"; };
-		CD0913D8298065D000F7719B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CD0913D8298065D000F7719B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		CD0913DA298065D100F7719B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CD0913DD298065D100F7719B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -52,7 +52,7 @@
 			isa = PBXGroup;
 			children = (
 				CD0913D6298065D000F7719B /* SwiftUIChatApp.swift */,
-				CD0913D8298065D000F7719B /* ContentView.swift */,
+				CD0913D8298065D000F7719B /* LoginView.swift */,
 				CD0913DA298065D100F7719B /* Assets.xcassets */,
 				CD0913DC298065D100F7719B /* Preview Content */,
 			);
@@ -137,7 +137,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD0913D9298065D000F7719B /* ContentView.swift in Sources */,
+				CD0913D9298065D000F7719B /* LoginView.swift in Sources */,
 				CD0913D7298065D000F7719B /* SwiftUIChatApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
