@@ -8,6 +8,7 @@
 import SwiftUI
 import Firebase
 
+// Singleton for managing instance of FirebaseApp
 class FirebaseManager: NSObject {
     
     let auth: Auth
@@ -29,6 +30,7 @@ struct LoginView: View {
     @State var isLoginMode = false
     @State var email = ""
     @State var password = ""
+    @State private var loginStatusMessage = ""
     
     var body: some View {
         VStack(spacing: 16) {
@@ -90,16 +92,12 @@ struct LoginView: View {
     
     private func handleAction() {
         if isLoginMode {
-            print("Should log into Firebase with existing credentials")
             loginUser()
         }
         else {
             createNewAccount()
-//            print("Register a new account inside of Firebase Auth and then store image in Storage somehow...")
         }
     }
-    
-    @State private var loginStatusMessage = ""
     
     private func loginUser() {
         FirebaseManager.shared.auth.signIn(withEmail: email, password: password) {result, err in
