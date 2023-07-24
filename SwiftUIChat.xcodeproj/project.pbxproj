@@ -11,6 +11,7 @@
 		CD0913D9298065D000F7719B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0913D8298065D000F7719B /* LoginView.swift */; };
 		CD0913DB298065D100F7719B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD0913DA298065D100F7719B /* Assets.xcassets */; };
 		CD0913DE298065D100F7719B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD0913DD298065D100F7719B /* Preview Assets.xcassets */; };
+		CDB28DFB2A6EE0FA00654334 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CDB28DFA2A6EE0FA00654334 /* GoogleService-Info.plist */; };
 		CDD7BF6C2A6EDA4000B412C2 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CDD7BF6B2A6EDA4000B412C2 /* FirebaseAuth */; };
 		CDD7BF6E2A6EDA4000B412C2 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = CDD7BF6D2A6EDA4000B412C2 /* FirebaseStorage */; };
 /* End PBXBuildFile section */
@@ -21,6 +22,7 @@
 		CD0913D8298065D000F7719B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		CD0913DA298065D100F7719B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CD0913DD298065D100F7719B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CDB28DFA2A6EE0FA00654334 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 			children = (
 				CD0913D6298065D000F7719B /* SwiftUIChatApp.swift */,
 				CD0913D8298065D000F7719B /* LoginView.swift */,
+				CDB28DFA2A6EE0FA00654334 /* GoogleService-Info.plist */,
 				CD0913DA298065D100F7719B /* Assets.xcassets */,
 				CD0913DC298065D100F7719B /* Preview Content */,
 			);
@@ -138,6 +141,7 @@
 			files = (
 				CD0913DE298065D100F7719B /* Preview Assets.xcassets in Resources */,
 				CD0913DB298065D100F7719B /* Assets.xcassets in Resources */,
+				CDB28DFB2A6EE0FA00654334 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
