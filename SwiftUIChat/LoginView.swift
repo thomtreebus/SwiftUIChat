@@ -50,9 +50,23 @@ struct LoginView: View {
                             Button {
                                 shouldShowImagePicker.toggle()
                             } label: {
-                                Image(systemName: "person.fill")
-                                    .font(.system(size: 64))
-                                    .padding()
+                                
+                                VStack {
+                                    if let image = self.image {
+                                        Image(uiImage: image)
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: 128, height: 128)
+                                            .cornerRadius(64)
+                                    } else {
+                                        Image(systemName: "person.fill")
+                                            .font(.system(size: 64))
+                                            .padding()
+                                            .foregroundColor(Color(.label))
+                                    }
+                                }
+                                .overlay(RoundedRectangle(cornerRadius: 64)
+                                    .stroke(.black, lineWidth: 3))
                             }
                         }
                         
