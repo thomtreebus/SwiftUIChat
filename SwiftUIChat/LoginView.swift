@@ -31,6 +31,7 @@ struct LoginView: View {
     @State var email = ""
     @State var password = ""
     @State private var loginStatusMessage = ""
+    @State private var shouldShowImagePicker = false
     
     var body: some View {
         VStack(spacing: 16) {
@@ -47,7 +48,7 @@ struct LoginView: View {
 
                         if !isLoginMode {
                             Button {
-                                
+                                shouldShowImagePicker.toggle()
                             } label: {
                                 Image(systemName: "person.fill")
                                     .font(.system(size: 64))
@@ -88,7 +89,12 @@ struct LoginView: View {
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
+        .fullScreenCover(isPresented: $shouldShowImagePicker, onDismiss: nil) {
+            ImagePicker(image: $image)
+        }
     }
+    
+    @State private var image: UIImage?
     
     private func handleAction() {
         if isLoginMode {
