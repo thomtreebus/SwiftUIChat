@@ -7,6 +7,20 @@
 
 import SwiftUI
 
+class MainMessagesViewModel: ObservableObject {
+    
+    init() {
+        fetchCurrentUser()
+    }
+    
+    private func fetchCurrentUser() {
+        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
+        
+        
+    }
+    
+}
+
 struct MainMessagesView: View {
     
     @State private var shouldShowLogOutOptions = false

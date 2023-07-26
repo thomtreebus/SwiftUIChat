@@ -11,6 +11,7 @@
 		CD0913D9298065D000F7719B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0913D8298065D000F7719B /* LoginView.swift */; };
 		CD0913DB298065D100F7719B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD0913DA298065D100F7719B /* Assets.xcassets */; };
 		CD0913DE298065D100F7719B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD0913DD298065D100F7719B /* Preview Assets.xcassets */; };
+		CD73CBAA2A711AC200CD9F1F /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD73CBA92A711AC200CD9F1F /* FirebaseManager.swift */; };
 		CDB28DFB2A6EE0FA00654334 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CDB28DFA2A6EE0FA00654334 /* GoogleService-Info.plist */; };
 		CDB28DFD2A6FCD8E00654334 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB28DFC2A6FCD8E00654334 /* ImagePicker.swift */; };
 		CDB28E002A6FE7DE00654334 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CDB28DFF2A6FE7DE00654334 /* FirebaseAuth */; };
@@ -25,6 +26,7 @@
 		CD0913D8298065D000F7719B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		CD0913DA298065D100F7719B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CD0913DD298065D100F7719B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CD73CBA92A711AC200CD9F1F /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		CDB28DFA2A6EE0FA00654334 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CDB28DFC2A6FCD8E00654334 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		CDB28E082A70284900654334 /* MainMessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMessagesView.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 		CD0913D5298065CF00F7719B /* SwiftUIChat */ = {
 			isa = PBXGroup;
 			children = (
+				CD73CBA82A711A9E00CD9F1F /* Utils */,
 				CDB28E052A70281800654334 /* MainMessages */,
 				CD0913D6298065D000F7719B /* SwiftUIChatApp.swift */,
 				CD0913D8298065D000F7719B /* LoginView.swift */,
@@ -80,6 +83,14 @@
 				CD0913DD298065D100F7719B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CD73CBA82A711A9E00CD9F1F /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				CD73CBA92A711AC200CD9F1F /* FirebaseManager.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		CDB28E052A70281800654334 /* MainMessages */ = {
@@ -171,6 +182,7 @@
 			files = (
 				CDB28DFD2A6FCD8E00654334 /* ImagePicker.swift in Sources */,
 				CDB28E092A70284900654334 /* MainMessagesView.swift in Sources */,
+				CD73CBAA2A711AC200CD9F1F /* FirebaseManager.swift in Sources */,
 				CD0913D9298065D000F7719B /* LoginView.swift in Sources */,
 				CD0913D7298065D000F7719B /* SwiftUIChatApp.swift in Sources */,
 			);
