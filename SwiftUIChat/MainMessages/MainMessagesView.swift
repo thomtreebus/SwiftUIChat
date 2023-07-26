@@ -36,12 +36,10 @@ class MainMessagesViewModel: ObservableObject {
             }
             
             guard let data = snapshot?.data() else {
-                self.errorMessage = "No data found"
                 return
                 
             }
             
-//            self.errorMessage = "Data: \(data.description)"
             let uid = data["uid"] as? String ?? "" // cast as optional string
             let email = data["email"] as? String ?? ""
             let profileImageUrl = data["profileImageUrl"] as? String ?? ""
@@ -64,8 +62,6 @@ struct MainMessagesView: View {
         NavigationView {
             //custom nav bar
             VStack {
-                Text("User: \(vm.chatUser?.uid ?? "")")
-                
                 customNavBar
                 messagesView
             }
@@ -87,10 +83,6 @@ struct MainMessagesView: View {
                 )
                 .shadow(radius: 5)
             
-
-//            Image(systemName: "person.fill")
-//                .font(.system(size: 34, weight: .heavy))
-            
             VStack(alignment: .leading, spacing: 4) {
                 let emailString = vm.chatUser?.email.replacingOccurrences(of: "@gmail.com", with: "") ?? ""
                 Text(emailString)
@@ -103,7 +95,6 @@ struct MainMessagesView: View {
                     Text("online")
                         .font(.system(size: 12))
                         .foregroundColor(Color(.lightGray))
-                    
                 }
             }
             
