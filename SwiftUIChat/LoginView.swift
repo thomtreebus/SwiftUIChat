@@ -123,6 +123,11 @@ struct LoginView: View {
     }
     
     private func createNewAccount() {
+        if self.image == nil {
+            self.loginStatusMessage = "You must select an avatar image"
+            return
+        }
+        
         FirebaseManager.shared.auth.createUser(withEmail: email, password: password) { result, err in
             if let err = err {
                 print("Failed to create user:", err)
@@ -181,6 +186,8 @@ struct LoginView: View {
                     return
                 }
                 print("Successfully uploaded user data")
+                
+                self.didCompleteLoginProcess()
             }
     }
     
