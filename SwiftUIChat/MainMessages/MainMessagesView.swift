@@ -39,11 +39,7 @@ class MainMessagesViewModel: ObservableObject {
                 return
             }
             
-            let uid = data["uid"] as? String ?? "" // cast as optional string
-            let email = data["email"] as? String ?? ""
-            let profileImageUrl = data["profileImageUrl"] as? String ?? ""
-            
-            self.chatUser = ChatUser(uid: uid, email: email, profileImageUrl: profileImageUrl)
+            self.chatUser = .init(data: data)
         }
     }
     
