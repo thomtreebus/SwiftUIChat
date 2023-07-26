@@ -8,6 +8,8 @@
 import SwiftUI
 import Firebase
 
+
+
 struct LoginView: View {
     
     @State var isLoginMode = false
@@ -155,16 +157,16 @@ struct LoginView: View {
                 print(url?.absoluteString)
                 
                 guard let url = url else { return }
-                self.storeUserInformation(imageProfileURL: url)
+                self.storeUserInformation(profileImageUrl: url)
             }
         }
     }
     
-    private func storeUserInformation(imageProfileURL: URL) {
+    private func storeUserInformation(profileImageUrl: URL) {
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else {
             return }
         
-        let userData = ["email": self.email, "uid": uid, "profileImageURL": imageProfileURL.absoluteString]
+        let userData = ["email": self.email, "uid": uid, "profileImageUrl": profileImageUrl.absoluteString]
         
         FirebaseManager.shared.firestore.collection("users")
             .document(uid).setData(userData) { err in
