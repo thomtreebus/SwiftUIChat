@@ -18,6 +18,11 @@ class MainMessagesViewModel: ObservableObject {
     @Published var chatUser: ChatUser?
     
     init() {
+        
+        DispatchQueue.main.async { // fixes bug that doesn't show full screen covers
+            self.isUserLoggedOut = FirebaseManager.shared.auth.currentUser?.uid == nil
+        }
+        
         fetchCurrentUser()
     }
     
@@ -25,7 +30,6 @@ class MainMessagesViewModel: ObservableObject {
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else {
             self.errorMessage = "Could not find firebase uid"
             return
-            
         }
         
         FirebaseManager.shared.firestore.collection("users").document(uid).getDocument { snapshot, error in
@@ -37,7 +41,6 @@ class MainMessagesViewModel: ObservableObject {
             
             guard let data = snapshot?.data() else {
                 return
-                
             }
             
             let uid = data["uid"] as? String ?? "" // cast as optional string
@@ -45,9 +48,14 @@ class MainMessagesViewModel: ObservableObject {
             let profileImageUrl = data["profileImageUrl"] as? String ?? ""
             
             self.chatUser = ChatUser(uid: uid, email: email, profileImageUrl: profileImageUrl)
-            
         }
-        
+    }
+    
+    @Published var isUserLoggedOut = false
+    
+    func handleSignOut() {
+        isUserLoggedOut.toggle()
+        try? FirebaseManager.shared.auth.signOut()
     }
     
 }
@@ -106,9 +114,20 @@ struct MainMessagesView: View {
                     .font(.system(size: 24, weight: .bold))
                     .foregroundColor(Color(.label))
             }
-            
         }
         .padding()
+        .actionSheet(isPresented: $shouldShowLogOutOptions) {
+            .init(title: Text("Settings"), message: Text("What do you want to do?"), buttons: [
+                .destructive(Text("Sign Out"), action: {
+                    print("handle sign out")
+                    vm.handleSignOut()
+                }),
+                .cancel()
+            ])
+        }
+        .fullScreenCover(isPresented: $vm.isUserLoggedOut, onDismiss: nil) {
+            LoginView()
+        }
     }
     
     private var messagesView: some View {
