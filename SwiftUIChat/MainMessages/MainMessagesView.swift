@@ -175,7 +175,8 @@ struct MainMessagesView: View {
             .shadow(radius: 15)
         }
         .fullScreenCover(isPresented: $shouldShowNewMessageScreen) {
-            Text("new message screen")
+            CreateNewMessageView() // redirect user to new message screen 
+            
         }
     }
 }

@@ -8,13 +8,35 @@
 import SwiftUI
 
 struct CreateNewMessageView: View {
+    
+    // env var used to get rid of view from full screen cover on MainMessagesView
+    @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            ScrollView {
+                ForEach(0..<10) {num in
+                    Text("new user")
+                }
+                .navigationTitle("New Message")
+                .toolbar {
+                    ToolbarItemGroup(placement: .navigationBarLeading) {
+                        Button {
+                            // remove CreateMessageView and show MainMessages again
+                            presentationMode.wrappedValue.dismiss()
+                        } label: {
+                            Text("Cancel")
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
 struct CreateNewMessageView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateNewMessageView()
+//        CreateNewMessageView()
+        MainMessagesView()
     }
 }
