@@ -28,7 +28,11 @@ class CreateNewMessageViewModel: ObservableObject {
                 
                 documentsSnapshot?.documents.forEach({ snapshot in
                     let data = snapshot.data()
-                    self.users.append(.init(data: data))
+                    let user = ChatUser(data: data)
+                    if user.uid != FirebaseManager.shared.auth.currentUser?.uid {
+                        self.users.append(.init(data: data))
+                    }
+                    
                 })
                 
 //                self.errorMessage = "Fetched users successfully"
