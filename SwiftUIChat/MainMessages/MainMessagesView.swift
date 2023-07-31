@@ -123,6 +123,8 @@ struct MainMessagesView: View {
                 self.vm.fetchCurrentUser()
             })
         }
+        
+//        @State private var
     }
     
     private var messagesView: some View {
@@ -175,7 +177,9 @@ struct MainMessagesView: View {
             .shadow(radius: 15)
         }
         .fullScreenCover(isPresented: $shouldShowNewMessageScreen) {
-            CreateNewMessageView() // redirect user to new message screen 
+            CreateNewMessageView { user in
+                print(user.email)
+            } // redirect user to new message screen
             
         }
     }
