@@ -55,29 +55,33 @@ struct CreateNewMessageView: View {
                 Text(vm.errorMessage)
                 
                 ForEach(vm.users) { user in
-                    Button {
-                        presentationMode.wrappedValue.dismiss()
-                        didSelectNewUser(user)
+                    NavigationLink {
+                        Text("new message log")
                     } label: {
-                        HStack(spacing: 16) {
-                            WebImage(url: URL(string: user.profileImageUrl))
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 50, height: 50)
-                                .clipped()
-                                .cornerRadius(50)
-                                .overlay(RoundedRectangle(cornerRadius: 50)
-                                    .stroke(Color(.label), lineWidth: 1)
-                                )
-                            Text(user.email)
-                                .foregroundColor(Color(.label))
-                            Spacer()
+                        Button {
+                            presentationMode.wrappedValue.dismiss()
+                            didSelectNewUser(user)
+                        } label: {
+                            HStack(spacing: 16) {
+                                WebImage(url: URL(string: user.profileImageUrl))
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 50, height: 50)
+                                    .clipped()
+                                    .cornerRadius(50)
+                                    .overlay(RoundedRectangle(cornerRadius: 50)
+                                        .stroke(Color(.label), lineWidth: 1)
+                                    )
+                                Text(user.email)
+                                    .foregroundColor(Color(.label))
+                                Spacer()
+                            }
+                            .padding(.horizontal)
                         }
-                        .padding(.horizontal)
+                        Divider()
+                            .padding(.vertical, 8)
                     }
-                    Divider()
-                        .padding(.vertical, 8)
-                }
+                    }
                 
             }.navigationTitle("New Message")
             .toolbar {
