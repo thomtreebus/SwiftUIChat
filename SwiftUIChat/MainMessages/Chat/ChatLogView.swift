@@ -14,10 +14,14 @@ struct ChatLogView: View {
     @State private var chatText = ""
     
     var body: some View {
-        VStack {
+        ZStack {
             messagesView
             
-            chatBottomBar
+            VStack {
+                Spacer()
+                chatBottomBar
+                    .background(.white)
+            }
         }
         .navigationTitle(chatUser?.email ?? "")
             .navigationBarTitleDisplayMode(.inline)
@@ -25,7 +29,7 @@ struct ChatLogView: View {
     
     private var messagesView: some View {
         ScrollView {
-            ForEach(0..<10) { num in
+            ForEach(0..<20) { num in
                 HStack {
                     Spacer()
                     HStack {
@@ -41,7 +45,9 @@ struct ChatLogView: View {
             }
             HStack { Spacer() }
         }
+        .clipped() // fixes transparency issue of messages appearing behind nav title
         .background(Color(.init(white: 0.95, alpha: 1)))
+        .padding(.bottom, 65)
     }
     
     private var chatBottomBar: some View {
