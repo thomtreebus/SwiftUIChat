@@ -68,7 +68,7 @@ struct MainMessagesView: View {
                 messagesView
                 
                 NavigationLink("", isActive: $shouldNavigateToChatLogView) {
-                    Text("Chat log view")
+                    chatLogView(chatUser: self.chatUser)
                 }
             }
             .overlay(newMessageButton, alignment: .bottom)
@@ -195,6 +195,21 @@ struct MainMessagesView: View {
     @State private var chatUser: ChatUser?
 }
 
+
+struct chatLogView: View {
+    
+    let chatUser: ChatUser?
+    
+    var body: some View {
+        ScrollView {
+            ForEach(0..<10) { num in
+                Text("Fake message")
+            }
+        }
+        .navigationTitle(chatUser?.email ?? "")
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}
 
 struct MainMessagesView_Previews: PreviewProvider {
     static var previews: some View {
