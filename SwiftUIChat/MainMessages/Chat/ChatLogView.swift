@@ -8,6 +8,11 @@
 import SwiftUI
 import Firebase
 
+
+struct ChatMessage {
+    let fromId, toId, text: String
+}
+
 class ChatLogViewModel: ObservableObject {
     
     @Published var chatText = ""
@@ -17,6 +22,30 @@ class ChatLogViewModel: ObservableObject {
     
     init(chatUser: ChatUser?) {
         self.chatUser = chatUser
+        
+        fetchMessages()
+    }
+    
+    private func fetchMessages() {
+        guard let fromId = FirebaseManager.shared.auth.currentUser?.uid else { return }
+        
+        guard let toId = chatUser?.uid else { return }
+        
+        FirebaseManager.shared.firestore
+            .collection("messages")
+            .document(fromId)
+            .collection(toId)
+            .addSnapshotListener { querySnapshot, error in // listen for messages
+                if let error = error {
+                    self.errorMessage = "Failed to listen for messages: \(error)"
+                    print(error)
+                    return
+                }
+                querySnapshot?.documents.forEach({ queryDocumentSnapshot in
+                    let data = queryDocumentSnapshot.data()
+//                    data
+                })
+            }
     }
     
     func handleSend() {
