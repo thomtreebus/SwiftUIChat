@@ -67,6 +67,13 @@ class ChatLogViewModel: ObservableObject {
                         self.chatMessages.append(.init(documentId: change.document.documentID, data: data))
                     } 
                 })
+                
+                // scroll to bottom when opening new chat log
+                // scroll animation is blocked by transition from Modal view
+                // Wait for next available main thread frame and then execute
+                DispatchQueue.main.async {
+                    self.count += 1
+                }
             }
     }
     
@@ -91,6 +98,7 @@ class ChatLogViewModel: ObservableObject {
             }
             print("Successfully saved current user sending message")
             self.chatText = ""
+            self.count += 1
         }
         
         let recipientMessageDocument =
@@ -138,12 +146,14 @@ struct ChatLogView: View {
         }
         .navigationTitle(chatUser?.email ?? "")
             .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(trailing: Button(action: {
-                vm.count += 1
-            }, label: {
-                Text("Count: \(vm.count)")
-            }))
+//            .navigationBarItems(trailing: Button(action: {
+//                vm.count += 1
+//            }, label: {
+//                Text("Count: \(vm.count)")
+//            }))
     }
+    
+    static let emptyScrollToString = "Empty"
     
     private var messagesView: some View {
         ScrollView {
@@ -153,10 +163,13 @@ struct ChatLogView: View {
                         MessageView(message: message)
                     }
                     HStack { Spacer() }
-                        .id("Empty")
+                        .id(Self.emptyScrollToString)
                 }
                 .onReceive(vm.$count) { _ in
-                    scrollViewProxy.scrollTo("Empty", anchor: .bottom)
+                    withAnimation(.easeOut(duration: 0.5)) {
+                        scrollViewProxy.scrollTo(Self.emptyScrollToString, anchor: .bottom)
+                    }
+                    
                 }
             }
         }
