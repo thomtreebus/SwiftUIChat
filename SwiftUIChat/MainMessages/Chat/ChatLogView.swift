@@ -53,6 +53,7 @@ class ChatLogViewModel: ObservableObject {
             .collection("messages")
             .document(fromId)
             .collection(toId)
+            .order(by: FirebaseConstants.timestamp)
             .addSnapshotListener { querySnapshot, error in // listen for messages
                 if let error = error {
                     self.errorMessage = "Failed to listen for messages: \(error)"
