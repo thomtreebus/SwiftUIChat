@@ -15,10 +15,14 @@ struct FirebaseConstants {
     static let timestamp = "timestamp"
 }
 
-struct ChatMessage {
+struct ChatMessage: Identifiable {
+    var id: String { documentId }
+    
+    let documentId: String
     let fromId, toId, text: String
     
-    init(data: [String: Any]) {
+    init(documentId: String, data: [String: Any]) {
+        self.documentId = documentId
         self.fromId = data[FirebaseConstants.fromId] as? String ?? ""
         self.toId = data[FirebaseConstants.toId] as? String ?? ""
         self.text = data[FirebaseConstants.text] as? String ?? ""
@@ -29,6 +33,8 @@ class ChatLogViewModel: ObservableObject {
     
     @Published var chatText = ""
     @Published var errorMessage = ""
+    
+    @Published var chatMessages = [ChatMessage]()
     
     let chatUser: ChatUser?
     
@@ -53,9 +59,12 @@ class ChatLogViewModel: ObservableObject {
                     print(error)
                     return
                 }
-                querySnapshot?.documents.forEach({ queryDocumentSnapshot in
-                    let data = queryDocumentSnapshot.data()
-                    
+                // only fetch new messages
+                querySnapshot?.documentChanges.forEach({ change in
+                    if change.type == .added {
+                        let data = change.document.data()
+                        self.chatMessages.append(.init(documentId: change.document.documentID, data: data))
+                    } 
                 })
             }
     }
@@ -76,7 +85,7 @@ class ChatLogViewModel: ObservableObject {
         document.setData(messageData) { error in
             if let error = error {
                 print(error)
-                self.errorMessage = "Failed to save message to FIrestore: \(error)"
+                self.errorMessage = "Failed to save message to Firestore: \(error)"
                 return
             }
             print("Successfully saved current user sending message")
@@ -129,11 +138,15 @@ struct ChatLogView: View {
     
     private var messagesView: some View {
         ScrollView {
-            ForEach(0..<20) { num in
+            ForEach(vm.chatMessages) { message in
+//                Text(message.text)
+                
+//            }
+//            ForEach(0..<20) { num in
                 HStack {
                     Spacer()
                     HStack {
-                        Text("Fake message")
+                        Text(message.text)
                             .foregroundColor(.white)
                     }
                     .padding()
