@@ -8,6 +8,7 @@
 import SwiftUI
 import SDWebImageSwiftUI
 import Firebase
+import FirebaseFirestoreSwift
 
 class MainMessagesViewModel: ObservableObject {
     
@@ -43,12 +44,18 @@ class MainMessagesViewModel: ObservableObject {
                 querySnapshot?.documentChanges.forEach({ change in
                     let docId = change.document.documentID
                     if let index = self.recentMessages.firstIndex(where: { rm in
-                        return rm.documentId == docId
+                        return rm.id == docId
                     }) {
                         self.recentMessages.remove(at: index)
                     }
-                    self.recentMessages.insert(.init(documentId: docId, data: change.document.data()), at: 0)
-//                    self.recentMessages.append()
+                    
+                    do {
+                        if let rm = try? change.document.data(as: RecentMessage.self) {
+                            self.recentMessages.insert(rm, at: 0)
+                        }
+                    } catch {
+                        print(error)
+                    }
                 })
             }
     }
@@ -170,7 +177,7 @@ struct MainMessagesView: View {
                         Text("Destination")
                     } label: {
                         HStack(spacing: 16) {
-                            WebImage(url: URL(string: recentMessage.profilImageUrl))
+                            WebImage(url: URL(string: recentMessage.profileImageUrl))
                                 .resizable()
                                 .scaledToFill()
                                 .frame(width: 48, height: 48)
