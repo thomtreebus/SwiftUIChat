@@ -27,8 +27,10 @@ class MainMessagesViewModel: ObservableObject {
     
     @Published var recentMessages = [RecentMessage]()
     
-    private func fetchRecentMessages() {
+    func fetchRecentMessages() {
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
+        
+        self.recentMessages.removeAll()
         
         FirebaseManager.shared.firestore.collection(FirebaseConstants.recent_messages)
             .document(uid)
@@ -40,6 +42,7 @@ class MainMessagesViewModel: ObservableObject {
                     print(error)
                     return
                 }
+                
                 // add recent message every time change occures
                 querySnapshot?.documentChanges.forEach({ change in
                     let docId = change.document.documentID
@@ -165,6 +168,7 @@ struct MainMessagesView: View {
             LoginView(didCompleteLoginProcess: {
                 self.vm.isUserLoggedOut = false
                 self.vm.fetchCurrentUser()
+                self.vm.fetchRecentMessages()
             })
         }
     }
@@ -187,7 +191,7 @@ struct MainMessagesView: View {
                                 .shadow(radius: 5)
                             
                             VStack(alignment: .leading, spacing: 8) {
-                                Text(recentMessage.email)
+                                Text(recentMessage.username)
                                     .font(.system(size: 16, weight: .bold))
                                     .foregroundColor(Color(.label))
                                     .multilineTextAlignment(.leading)
@@ -198,7 +202,7 @@ struct MainMessagesView: View {
                             }
                             Spacer()
                             
-                            Text(recentMessage.timestamp.description)
+                            Text(recentMessage.timeAgo)
                                 .font(.system(size: 14, weight: .semibold))
                         }
                     }
