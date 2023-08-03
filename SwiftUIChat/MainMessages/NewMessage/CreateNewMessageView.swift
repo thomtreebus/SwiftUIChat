@@ -34,8 +34,6 @@ class CreateNewMessageViewModel: ObservableObject {
                     }
                     
                 })
-                
-//                self.errorMessage = "Fetched users successfully"
             }
     }
 }

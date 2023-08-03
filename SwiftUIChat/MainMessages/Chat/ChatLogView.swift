@@ -19,19 +19,6 @@ struct FirebaseConstants {
     static let email = "email"
 }
 
-struct ChatMessage: Identifiable {
-    var id: String { documentId }
-    
-    let documentId: String
-    let fromId, toId, text: String
-    
-    init(documentId: String, data: [String: Any]) {
-        self.documentId = documentId
-        self.fromId = data[FirebaseConstants.fromId] as? String ?? ""
-        self.toId = data[FirebaseConstants.toId] as? String ?? ""
-        self.text = data[FirebaseConstants.text] as? String ?? ""
-    }
-}
 
 class ChatLogViewModel: ObservableObject {
     
@@ -66,10 +53,17 @@ class ChatLogViewModel: ObservableObject {
                 // only fetch new messages
                 querySnapshot?.documentChanges.forEach({ change in
                     if change.type == .added {
-                        let data = change.document.data()
-                        self.chatMessages.append(.init(documentId: change.document.documentID, data: data))
+                        do {
+                            if let cm = try? change.document.data(as: ChatMessage.self) {
+                                self.chatMessages.append(cm)
+                            }
+                        } catch {
+                            print(error)
+                        }
                     } 
                 })
+                
+                
                 
                 // scroll to bottom when opening new chat log
                 // scroll animation is blocked by transition from Modal view
@@ -184,11 +178,6 @@ struct ChatLogView: View {
         }
         .navigationTitle(chatUser?.email ?? "")
             .navigationBarTitleDisplayMode(.inline)
-//            .navigationBarItems(trailing: Button(action: {
-//                vm.count += 1
-//            }, label: {
-//                Text("Count: \(vm.count)")
-//            }))
     }
     
     static let emptyScrollToString = "Empty"

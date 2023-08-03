@@ -21,6 +21,7 @@
 		CD73CBBF2A7BFBDA00CD9F1F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CD73CBBE2A7BFBDA00CD9F1F /* FirebaseFirestore */; };
 		CD73CBC12A7BFBDA00CD9F1F /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CD73CBC02A7BFBDA00CD9F1F /* FirebaseFirestoreSwift */; };
 		CD73CBC32A7BFBDA00CD9F1F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = CD73CBC22A7BFBDA00CD9F1F /* FirebaseStorage */; };
+		CD73CBC52A7C011700CD9F1F /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD73CBC42A7C011700CD9F1F /* ChatMessage.swift */; };
 		CDB28DFB2A6EE0FA00654334 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CDB28DFA2A6EE0FA00654334 /* GoogleService-Info.plist */; };
 		CDB28DFD2A6FCD8E00654334 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB28DFC2A6FCD8E00654334 /* ImagePicker.swift */; };
 		CDB28E092A70284900654334 /* MainMessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB28E082A70284900654334 /* MainMessagesView.swift */; };
@@ -37,6 +38,7 @@
 		CD73CBB42A76CF6700CD9F1F /* CreateNewMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewMessageView.swift; sourceTree = "<group>"; };
 		CD73CBB72A7812F500CD9F1F /* ChatLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogView.swift; sourceTree = "<group>"; };
 		CD73CBB92A7BF87200CD9F1F /* RecentMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentMessage.swift; sourceTree = "<group>"; };
+		CD73CBC42A7C011700CD9F1F /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		CDB28DFA2A6EE0FA00654334 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CDB28DFC2A6FCD8E00654334 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		CDB28E082A70284900654334 /* MainMessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMessagesView.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 			children = (
 				CD73CBAF2A7183B700CD9F1F /* ChatUser.swift */,
 				CD73CBB92A7BF87200CD9F1F /* RecentMessage.swift */,
+				CD73CBC42A7C011700CD9F1F /* ChatMessage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -226,6 +229,7 @@
 				CD73CBB02A7183B700CD9F1F /* ChatUser.swift in Sources */,
 				CD73CBB82A7812F500CD9F1F /* ChatLogView.swift in Sources */,
 				CD73CBBA2A7BF87200CD9F1F /* RecentMessage.swift in Sources */,
+				CD73CBC52A7C011700CD9F1F /* ChatMessage.swift in Sources */,
 				CDB28DFD2A6FCD8E00654334 /* ImagePicker.swift in Sources */,
 				CDB28E092A70284900654334 /* MainMessagesView.swift in Sources */,
 				CD73CBAA2A711AC200CD9F1F /* FirebaseManager.swift in Sources */,
