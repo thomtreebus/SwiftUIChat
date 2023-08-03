@@ -127,7 +127,7 @@ class ChatLogViewModel: ObservableObject {
         
         guard let chatUser = chatUser else { return }
         
-        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return } 
+        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
         guard let toId = self.chatUser?.uid else { return }
         
         let document = FirebaseManager.shared.firestore.collection(FirebaseConstants.recent_messages)
@@ -143,6 +143,8 @@ class ChatLogViewModel: ObservableObject {
             FirebaseConstants.profileImageUrl: chatUser.profileImageUrl,
             FirebaseConstants.email: chatUser.email
         ] as [String : Any]
+        
+        // todo: need to save similar dictionary of the recipient of this message... how
         
         document.setData(data) { error in
             if let error = error {
